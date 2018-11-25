@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" style="border-bottom: 1px solid #000;">
+        <div id="app">
+            <child :message="1"></child>
+            <!-- <child message="hello word"></child> -->
+            <childs my-message="hello word2"></childs>
+            <childss messages="agaeear"></childss>
+        </div>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components:{
+                "child": {
+                    props: ["message"],
+                    template: "<p>{{ message }}</p>"
+                },
+                "childs": {
+                    props: ["myMessage"],
+                    template: "<p>{{ myMessage }}</p>"
+                },
+                "childss": {
+                    props: ["messages"],
+                    template: "<p>{{messages}}</p>"
+                }
+            }
+        })
+    </script>
+    <div id="app2">
+        <input type="text" v-model="mes">
+        <br>
+        <child :message="mes"></child>
+        <childs :message="mes"></childs>
+        <childss :message="mes"></childss>
+    </div>
+    <script>
+        new Vue({
+            el: "#app2",
+            data: {
+                mes: "动态prop"
+            },
+            components: {
+                "child": {
+                    props: ["message"],
+                    template: "<p>{{ message }}</p>"
+                },
+                "childs": {
+                    props: ["message"],
+                    data() {
+                        return {
+                            mess: this.message
+                        }
+                    },
+                    template: "<p>{{ mess }}</p>"
+                },
+                "childss": {
+                    props: ["message"],
+                    computed:{
+                        reverseStr() {
+                            return this.message.split("").reverse().join("")
+                        }
+                    },
+                    template: "<p>{{ reverseStr }}</p>"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

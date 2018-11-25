@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function A() {
+            this.name = "张三";
+        }
+        function B(num, color) {
+            // A.apply(this);
+            this.age = num;
+            this.color = color;
+        }
+        var p = new B(20, "blue");
+        // B.prototype.sun = "张五";
+        console.log(p);
+
+        var q = new B(33, "red");
+        console.log(q);
+
+
+
+
+        function Father() {
+            // this.sayName = function () {
+            //     console(222);
+            // }
+            //  Code goes here
+        }
+        var obj1 = new Father();    //  此时，
+        Father.prototype = {
+            name: "hhhhh",
+            last: "wwwww",
+            sayName: function () {
+                alert(this.name);
+            }
+        }
+        obj1.sayName() // error
+                   // 因为，构造函数的prototype属性被重写了，js的对象都是不相等的
+    </script>
+</body>
+
+</html>

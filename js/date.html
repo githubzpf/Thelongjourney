@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"></p><p id="p2"></p><p id="p3"></p><p id="p4"></p><p id="p5"></p><p id="p6"></p><p id="p7"></p><p id="p8"></p><p id="p9"></p>
+    <script>
+        var p1 = document.getElementById("p1"),p2 = document.getElementById("p2"),p3 = document.getElementById("p3"),p4 = document.getElementById("p4"),p5 = document.getElementById("p5"),p6 = document.getElementById("p6"),p7 = document.getElementById("p7"),p8 = document.getElementById("p8"),p9 = document.getElementById("p9");
+       
+        setInterval(function(){
+            p1.innerHTML = new Date(); //Wed Mar 21 2018 15:41:49 GMT+0800 (中国标准时间)
+        }, 1000);
+      
+        setInterval(function(){
+            p2.innerHTML = new Date().toLocaleString(); //2018/3/21 下午3:42:29
+        }, 1000);
+       
+       
+        p3.innerHTML = new Date().toLocaleDateString(); // 2018/3/21
+
+        setInterval(function(){
+            p4.innerHTML = new Date().toLocaleTimeString(); //下午3:42:29
+        }, 1000);
+       
+        p5.innerHTML = new Date().getFullYear(); // 2018 获取年份
+
+        p6.innerHTML = new Date().getMonth() + 1; //获取月份  需要 + 1
+
+        p7.innerHTML = new Date().getDate(); //获取本月某天（1-31）
+
+        p8.innerHTML = new Date().getDay(); //周几 （0-6）
+
+        p9.innerHTML = new Date().getHours(); // 小时数
+
+        console.log(new Date().getMinutes()); // 分钟数
+
+        console.log(new Date().getSeconds()); // 秒数
+
+        console.log(new Date().getMilliseconds()); //毫秒数
+
+        console.log(new Date().getTime()); //时间戳
+        
+
+// getDate() 	从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+// getDay() 	从 Date 对象返回一周中的某一天 (0 ~ 6)。
+// getFullYear() 	从 Date 对象以四位数字返回年份。
+// getHours() 	返回 Date 对象的小时 (0 ~ 23)。
+// getMilliseconds() 	返回 Date 对象的毫秒(0 ~ 999)。
+// getMinutes() 	返回 Date 对象的分钟 (0 ~ 59)。
+// getMonth() 	从 Date 对象返回月份 (0 ~ 11)。
+// getSeconds() 	返回 Date 对象的秒数 (0 ~ 59)。
+// getTime() 	返回 1970 年 1 月 1 日至今的毫秒数。
+
+    </script>
+</body>
+</html>

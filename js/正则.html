@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //https://www.cnblogs.com/chenmeng0818/p/6370819.html
+
+
+
+
+        //i 忽略大小写  m 多行匹配  g 全局匹配（查找所有匹配而非在找到第一个匹配后停止）
+
+        // [abc] 查找方括号之间的任何字符。
+        // [0 - 9] 查找任何从 0 至 9 的数字。(x | y) 查找任何以 | 分隔的选项。\ d 查找数字。\ s 查找空白字符。\ b 匹配单词边界。
+        // n + 匹配任何包含至少一个 n 的字符串。
+        // n * 匹配任何包含零个或多个 n 的字符串。
+        // n ? 匹配任何包含零个或一个 n 的字符串。
+
+        var str = "Abcaa";
+
+        var patt1 = new RegExp("aa", "i");
+
+        // test() 方法用于检测一个字符串是否匹配某个模式. 返回true或false;
+
+        console.log(patt1.test(str)); // true
+        console.log(/c/.test(str)); // true
+
+
+        //exec返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。
+
+        var str2 = "Hsfiuhgsudafdh";
+
+        var patt2 = new RegExp("h", "gi");
+        while ((result = patt2.exec(str2)) != null) {
+            console.log(result);
+            console.log(patt2.lastIndex);
+        }
+
+
+        var str = 'aaabbb';
+        var reg = /(a+)(?:b+)/;
+        var res = reg.exec(str);
+        console.log(res); //  ["aaabbb", "aaa", index: 0, input: "aaabbb"]  只捕获第一个小分组的内容
+
+
+
+
+        //search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。返回与正则相匹配的子串的起始位置或-1;
+
+        var str = "Visit w3School!"
+        console.log(str.search(/W3School/i)) // 6
+
+
+        //match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。返回匹配结果的数组或null。该数组的内容依赖于 regexp 是否具有全局标志 g。
+
+        var str4 = "1afa2sf5we6rg3er3g3r6r66w";
+
+        console.log(str4.match(/\d+/g)); //  ["1", "2", "5", "6", "3", "3", "3", "6", "66"]
+        //replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。返回一个新的字符串
+        name = "Doe, John";
+        console.log(name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1")) // John Doe
+
+        name = 'aaa bbb ccc';
+        uw = name.replace(/\b\w+\b/g, function (word) {
+            return word.substring(0, 1).toUpperCase() + word.substring(1);
+        });
+        console.log(uw); // Aaa Bbb Ccc
+
+
+
+
+        var name = "aaa bbb ccc";
+        console.log(name.match(/\b\w+\b/g)) // ["aaa", "bbb", "ccc"]
+
+
+        var name = '"a", "b"';
+        console.log(name.replace(/"([^"]*)"/g, "'$1'"));
+    </script>
+
+    <script>
+        //找出这个字符串中的所有数字
+
+        //方法1
+
+        var str = 'abc123de45fgh6789qqq111';
+
+        function findNum(str) {
+            var tmp = '';
+            var arr = [];
+            for (var i = 0, len = str.length; i < len; i++) {
+                var cur = str[i];
+                if (!isNaN(cur)) {
+                    tmp += cur;
+                } else {
+                    if (tmp) {
+                        arr.push(tmp);
+                        tmp = '';
+                    }
+                }
+            }
+            if (tmp) {
+                arr.push(tmp)
+            }
+            return arr;
+        }
+        console.log(findNum(str));
+
+        //方法2
+
+        var reg = /\d+/g;
+
+        console.log(str.match(reg));
+
+
+
+
+        var str1 = 'abc';
+        var str2 = 'dbc';
+        var str3 = '.bc';
+        var reg = /[ab.]bc/; //此时的.就表示.
+        console.log(reg.test(str1)) //true
+        console.log(reg.test(str2)) //false
+        console.log(reg.test(str3)) //true
+
+
+
+
+
+
+        var str = 'abbbbAAbcBCCccdaACBDDabcccddddaab';
+
+        var str = str.toLowerCase().split("").sort(function (a, b) {
+            return a.localeCompare(b)
+        }).join("");
+        var reg = /(\w)\1+/ig;
+        var maxStr = '';
+        var maxLen = 0;
+        console.log(str.match(reg)); // ["aaaaaaaa", "bbbbbbbbb", "ccccccccc", "ddddddd"]
+        str.replace(reg, function ($0, $1) {
+            console.log($0);
+            console.log($1)
+            var regLen = $0.length;
+            if (regLen > maxLen) {
+                maxLen = regLen;
+                maxStr = $1;
+            } else if (maxLen == regLen) {
+                maxStr += $1;
+            }
+        })
+        console.log(`出现最多的字母是${maxStr},共出现了${maxLen}次`) // 出现最多的字母是bc,共出现了9次
+
+
+
+        //用exec来简单模拟下match方法的实现。
+        String.prototype.myMatch = function (reg) {
+            var arr = [];
+            console.log(this) // 'abc123cba456aaa789'
+            var res = reg.exec(this);
+            console.log(res);
+            if (reg.global) {
+                while (res) {
+                    arr.push(res[0]);
+                    res = reg.exec(this)
+                }
+            } else {
+                arr.push(res[0]);
+            }
+            return arr;
+        }
+
+        var str = 'abc123cba456aaa789';
+        var reg = /\d+/g;
+        console.log(str.myMatch(reg))
+
+
+
+
+        var str = '2017-01-06';
+        str = str.replace(/-\d+/g, function () {
+            console.log(arguments)
+        })
+
+
+
+
+
+
+
+
+
+        //通过replace方法获取url中的参数的方法
+
+            (function (pro) {
+                function queryString() {
+                    var obj = {},
+                        reg = /([^?&#+]+)=([^?&#+]+)/g;
+                    this.replace(reg, function ($0, $1, $2) {
+                        obj[$1] = $2;
+                    })
+                    return obj;
+                }
+                pro.queryString = queryString;
+            }(String.prototype));
+
+        // 例如 url为 https://www.baidu.com?a=1&b=2
+        // window.location.href.queryString();
+        // {a:1,b:2}
+    </script>
+</body>
+
+</html>

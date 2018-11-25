@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .bg{
+        background: red;
+    }
+    .box1{
+        width: 10px;
+        height: 10px;
+    }
+    .bor{
+        border: 1px solid #000;
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+    <div id="app">
+        <div class="box1" v-bind:class="{bg:bg, bor: bor}">
+            
+        </div>
+        <div class="box1" v-bind:class="datas">
+            
+        </div>
+        <div class="box1" v-bind:class="compCla">
+
+        </div>
+        <div class="box1" v-bind:class="[bgs, bors]">
+            
+        </div>
+        <my-component class="bor box1"></my-component>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+        Vue.component("my-component",{
+            template:"<div class='bg'></div>"
+        })
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                bg: "sdf",
+                bor: false,
+                datas:{
+                    bg: false,
+                    bor: true
+                },
+                bgs: "bg",
+                bors: "bor"
+            },
+            computed:{
+                compCla: function() {
+                    return {
+                        bg: true,
+                        bor: true
+                    }
+                }
+            }
+        })
+    </script>
+
+
+
+
+
+    <div id="app2">
+        <div class="box2" v-bind:style="{background: Bg,color:Color}">
+            hello word
+        </div>
+        <div class="box2" v-bind:style="styleObj">
+                hello word
+            </div>
+    </div>
+    <script>
+        let vm2 = new Vue({
+            el:"#app2",
+            data:{
+                Bg:"#000",
+                Color:"#fff",
+                styleObj:{
+                    background:"red",
+                    color:"yellow"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

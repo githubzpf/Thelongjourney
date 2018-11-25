@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body>
+    <div id="watch-example">
+        <p>
+            <input type="text" v-model="inptext">
+        </p>
+        <p>
+            {{asw}}
+        </p>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+        var nm2 = new Vue({
+            el: "#watch-example",
+            data:{
+                inptext: "",
+                asw: "asw"
+            },
+            watch:{
+                inptext:function(newtext, oldtext){
+                    console.log(oldtext)
+                    console.log(newtext)
+                    this.asw =  this.inptext
+                }
+            }
+        })
+    </script>
+
+
+
+
+
+
+    <div id="app">
+        <div>{{message}}</div>
+        <div v-cloak>{{reverseMessage}}</div>
+        <div>{{aaa()}}</div>
+        <div>{{methodsNow()}}</div>
+        <div v-if="num">{{computedNow}}</div>
+        <div>{{fullName}}</div>
+        <div>{{compName}}</div>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                message: "hello word",
+                num: false,
+                firstName:"first",
+                lastName:"last",
+                fullName: "dfsd"
+            },
+            computed: {
+                reverseMessage() {
+                    return this.message.split("").reverse().join("");
+                },
+                computedNow() {
+                    return new Date().toLocaleString();
+                },
+                compName() {
+                    return this.firstName + this.lastName
+                }
+            },
+            methods: {
+                aaa () {
+                    return "aaas"
+                },
+                methodsNow() {
+                    let that = this;
+                    setTimeout(function(){
+                        that.num = !that.num
+                        that.firstName = "1"
+                        that.lastName = "2"
+                    },1000)
+                    return new Date().toLocaleString();
+                }
+            },
+            watch:{
+                firstName: function (val) {
+                    this.fullName = val + ' ' + this.lastName
+                },
+                lastName: function (val) {
+                    this.fullName = this.firstName + ' ' + val
+                }
+            },
+            mounted() {
+                console.log(222)
+            }
+        })
+    </script>
+
+
+
+
+    
+</body>
+</html> 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <p>.......................................................................................................</p>
+        <my-component>
+            <p>这是一些初始内容</p>
+            <p>这是更多的初始内容</p>
+        </my-component>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            components: {
+                "my-component": {
+                    template: "<div>\
+                            <h2>我是子组件的标题</h2>\
+                            <slot>\
+                                只有在没有要分发的内容时才会显示。\
+                            </slot>\
+                            </div>",
+
+                }
+            }
+        })
+    </script>
+    <div id="app2" style="border-top: 1px solid red">
+        <my-component>
+            <h1 slot="header">这里可能是一个页面标题</h1>
+
+            <p>主要内容的一个段落。</p>
+            <p>另一个主要段落。</p>
+
+            <p slot="footer">这里有一些联系信息</p>
+        </my-component>
+    </div>
+    <script>
+        var app2 = new Vue({
+            el: "#app2",
+            components: {
+                "my-component": {
+                    template: '<div class="container">\
+                                    <header>\
+                                        <slot name="header"></slot>\
+                                    </header>\
+                                    <main>\
+                                        <slot></slot>\
+                                    </main>\
+                                    <footer>\
+                                        <slot name="footer"></slot>\
+                                    </footer>\
+                                </div>'
+                }
+            }
+        })
+    </script>
+    <div>,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,</div>
+    <div id="appa">
+        <my-components>
+            button
+        </my-components>
+        <my-components>
+    
+        </my-components>
+    </div>
+    <script>
+        var appa = new Vue({
+            el: "#appa",
+            components: {
+                "my-components": {
+                    template: "<button type='submit'><slot>Submit</slot></button>"
+                }
+            }
+        })
+    </script>
+    <div>,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,</div>
+    <div id="appb">
+        <my-components>
+           aaa{{user}}
+           <!-- {{text}} --> 
+        </my-components>
+        <my-components>
+    
+        </my-components>
+    </div>
+    <script>
+        var appb = new Vue({
+            el: "#appb",
+            data() {
+                return{
+                    user:"zpf"
+                }
+            },
+            components: {
+                "my-components": {
+                    template: "<div>hello word<slot></slot></div>",
+                    data() {
+                        return {
+                            text: "我是li"
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+    <div>、、、、、、、、、、、、、、、、、、、、、、、、、、</div>
+    <div id="app3">
+        <my-components>
+            <template slot-scope="ssss"></template>
+            <p>123</p>
+            <p slot-scope="ssss">{{ ssss.text }}</p>
+            </template>
+        </my-components>
+    </div>
+    <script>
+        var app3 = new Vue({
+            el: "#app3",
+            components: {
+                "my-components": {
+                    template: "<div><slot text='hello word'></slot></div>"
+                }
+            }
+        })
+    </script>
+    <div>、、、、、、、、、、、、、、、、、、、、、、、、、、</div>
+    <div id="app4">
+        <my-component>
+            <li slot="item" slot-scope="item">{{ item.text }}</li>
+        </my-component>
+    </div>
+    <script>
+        new Vue({
+            el: "#app4",
+            components: {
+                "my-component": {
+                    template: "<ul><slot name='item' v-for='item in items' :text='item.text'></slot></ul>",
+                    data() {
+                        return {
+                            items: [{
+                                    text: "a"
+                                },
+                                {
+                                    text: "b"
+                                },
+                                {
+                                    text: "c"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

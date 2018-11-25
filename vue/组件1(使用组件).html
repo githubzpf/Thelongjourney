@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <div id="app" style="border-bottom:1px solid #000; margin-bottom:10px;">
+            <my-component></my-component>
+            <temp></temp>
+            <btn></btn>
+            <btn></btn>
+            <btn></btn>
+        </div>
+        <div id="app2">
+            <my-component></my-component>
+            <my-components></my-components>
+            <ul>
+                <!-- <li is="my-li"></li> -->
+                <my-li></my-li>
+            </ul>
+            <btns></btns>
+            <btns></btns>
+            <btns></btns>
+        </div>
+    </div>
+    
+    <script src="./vue.min.js"></script>
+    <script>
+        Vue.component("my-component", {
+            template: "<div>全局组件</div>"
+        })
+        var data = {num : 0}
+        var Child = {
+            template: "<div>局部组件1</div>"
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                obj: "A"
+            },
+            components: {
+                "temp": Child,
+                "btn": {
+                    template: "<button @click=\"num += 1\">{{ num }}</button>",
+                    data: function() {
+                        return data
+                    }
+                }
+            }
+        })
+        var app2 = new Vue({
+            el: "#app2",
+            components: {
+                "my-components": {
+                    template: "<div>局部组件2</div>"
+                },
+                "my-li": {
+                    template: "<li>{{text}}</li>",
+                    data() {
+                        return {
+                            text: "我是li"
+                        }
+                    }
+                },
+                "btns": {
+                    template: "<button @click=\"num += 1\">{{ num }}</button>",
+                    data() {
+                        return {
+                            num: 0
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

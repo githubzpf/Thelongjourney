@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(value, key, index) in obj">
+                {{ index }} : {{ key }} : {{ value }}
+            </li>
+        </ul>
+        <ul>
+            <!-- <li v-for="(item, index) in num" :class="item">{{item}}</li> -->
+            <li v-for="(item, index) in num" :key="item">{{item}}</li>
+        </ul>
+        <button @click="btn">
+            点我看看
+        </button>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                obj:{
+                    name:"张三",
+                    age:15,
+                    like:"sdfds"
+                },
+                num:["a", "b", "c", "d"]
+            },
+            methods:{
+                btn(){
+                    this.num.reverse().push("k")
+                    console.log(this.num)
+                }
+            }
+        })
+        vm.$set(vm.obj, "home", "beijing")
+        Vue.set(vm.obj, "time", "上午")
+    </script>
+
+
+    <div id="app2">
+        <ul>
+            <li v-for="(item, index) of arr">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm2 = new Vue({
+            el:"#app2",
+            data:{
+                arr:[1, 2, 3]
+            }
+        })
+
+        // vm2.arr[0] = 100   //  Vue无法检测到
+        // vm2.arr.length = 6; //  Vue无法检测到
+
+        Vue.set(vm2.arr, 0, 100)  //  Vue能检测到
+
+        vm2.$set(vm2.arr, 1, 200) //  Vue能检测到
+
+        vm2.arr.splice(3, 0, 4)  //  Vue能检测到
+    </script>
+
+    <div id="app3">
+        <ul>
+            <li v-for="(value, key, index) in obj">
+                {{ index }} : {{ key }} : {{ value }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app3 = new Vue({
+            el:"#app3",
+            data:{
+                obj:{
+                    a: 1,
+                    b: 2,
+                    c: 3
+                }
+            }
+        })
+    app3.obj = Object.assign({}, app3.obj, {
+        d: 4,
+        e: 5
+    })
+    </script>
+</body>
+</html>

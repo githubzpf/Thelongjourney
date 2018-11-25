@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body>
+    <div id="box" style="display:flex;">
+        <div id="app">
+            <input type="text" v-model="text1" placeholder="text1">
+            <p v-cloak>text1: {{ text1 }}</p>
+            <p>...........................................................................................................</p>
+
+            <textarea name="text2" id="text2" cols="30" rows="3" v-model="text2" placeholder="text2"></textarea>
+            <p style="white-space: pre-line;">text2: {{ text2 }}</p>
+            <p>...........................................................................................................</p>
+
+            <input type="checkbox" id="q" v-model="checked">
+            <label for="q" v-cloak>{{ checked }}</label>
+            <p>...........................................................................................................</p>
+
+            <div>
+                <input type="checkbox" id="a" value="as" v-model="arr">
+                <label for="a">a</label>
+                <input type="checkbox" id="b" value="bs" v-model="arr">
+                <label for="b">b</label>
+                <input type="checkbox" id="c" value="cs" v-model="arr">
+                <label for="c">c</label>
+                <br>
+                <span v-cloak>arr: {{ arr }}</span>
+            </div>
+            <p>...........................................................................................................</p>
+            
+            <div>
+                <input type="radio" value="one" name="radios" v-model="radioValue"> <span>One</span><br>
+                <input type="radio" value="two" name="radios" v-model="radioValue"> <span>Two</span><br>
+                <span v-cloak>radioValue: {{ radioValue }}</span>
+            </div>
+            <p>...........................................................................................................</p>
+
+            <div>
+                <select name="" id="" v-model="selected">
+                    <option value="" disabled>请选择</option>
+                    <option value="ones">one</option>
+                    <option value="twos">two</option>
+                    <option value="threes">three</option>
+                </select>
+                <p v-cloak>selected:{{ selected }}</p>
+            </div>
+        </div>
+        <div id="app2" style="border-left:1px solid #000;padding-left:10px;">
+            <div>
+                <select name="" id="" multiple v-model="selected">
+                    <option value="">请选择</option>
+                    <option value="A">One</option>
+                    <option value="B">Two</option>
+                    <option value="C">Three</option>
+                </select>
+                <p v-cloak>selected: {{ selected }}</p>
+            </div>
+            <p>...........................................................................................................</p>
+
+            <div>
+                <select name="" id="" v-model="selected2" v-cloak>
+                    <option v-for="item in options" :value="item.text">
+                        {{ item.value }}
+                    </option>
+                </select>
+                <p v-cloak>selected2: {{ selected2 }}</p>
+            </div>
+            <p>...........................................................................................................</p>
+
+            <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+            <p>toggle: {{ toggle }}</p>
+            <p>...........................................................................................................</p>
+
+            <input type="radio" v-model.lazy="pick" value="A">
+            <input type="radio" v-model.lazy="pick" value="B">
+            <input type="radio" v-model.lazy="pick" value="C">
+            <p>pick: {{ pick }}</p>
+
+        </div>
+    </div>
+    
+    <script src="./vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                text1: "",
+                text2: "",
+                checked: true,
+                arr: [],
+                radioValue: "",
+                selected: ""
+            }
+        })
+        var app2 = new Vue({
+            el:"#app2",
+            data:{
+                selected: [],
+                selected2: "A",
+                toggle:"",
+                pick: "",
+                options:[
+                    {text: "A", value: "One"},
+                    {text: "B", value: "Two"},
+                    {text: "C", value: "Three"}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        padding: 50px;
+    }
+
+    .son1 {
+        padding: 55px 60px;
+        border: 1px solid #000;
+    }
+
+    .son1 p {
+        padding: 20px 30px;
+        border: 1px solid #000;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="son1">
+            <p class="ps">
+                hello word
+            </p>
+        </div>
+        <button>Clone Me!</button>
+    </div>
+    <script>
+        $(".box").on("click", "p", function (){
+           if($(this).hasClass('ps')) {
+               return;
+           } else {
+               console.log(555)
+           }
+           console.log(333333)
+        });
+        // console.log($(".son1 p").offset().top); // 106
+        // console.log($(".son1 p").position().top); // 106
+        // console.log($(".son1 p").scrollTop()); // 0
+        // console.log($(".son1 p").scrollLeft()); // 0
+        // $(".son1 p").width(200);
+        // console.log($(".son1").innerHeight()); // 173
+        // console.log($(".son1").outerHeight()); // 175
+        // $("<p>my name is ZhangSan</p>").appendTo($(".son1"));
+        // $("<p>hi</p>").prependTo($(".son1"));
+
+        
+        // $("button").click(function () {
+        //     $(this).clone(true).insertAfter(this);
+        // });
+    </script>
+</body>
+
+</html>

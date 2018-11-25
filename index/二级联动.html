@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <iframe src="http://10.27.3.91:8080/cm_bdp/common/ssologin?userCode=admin&token=3ggSQSyzZ7K%2F6A%2BjvChbMglKVBqdSreKhsaSB0igcFkIVxRCCsJjaw%3D%3D" frameborder="0"></iframe>
+    <select id="a1" onchange="addOption()"></select>
+    <select id="a2"></select>
+    <script>
+        var city = new Array;        
+        city['江苏'] = ['南京', '连云港', '苏州', '镇江'];        
+        city['山东'] = ['青岛', '烟台', '济南'];         
+        function allCity() {            
+            var select1 = document.getElementById("a1");            
+            for(var i in city) {  //这里注意遍历数组的写法
+                select1.add(new Option(i, i), null); // 文本值  value值  是否选中
+            }   
+            addOption(); // 初始化选项     
+        }        
+        function addOption() {            
+            var select2 = document.getElementById("a2");
+            var select1 = document.getElementById("a1").value; 
+            select2.length = 0; //每次都先清空一下市级菜单  
+            if(select1 != '请选择省份') {                
+                for(var i in city[select1 ]) {    
+                select2.add(new Option(city[select1][i], city[select1][i]), null);                
+                }            
+            }else if (sheng == '请选择省份'){              
+                select2.length = 0;           
+                select2.add(new Option("请选择城市", "请选择城市"), null); 
+            }      
+        }       
+        window.onload = allCity();
+
+        function leeet() {
+            let a = 1
+            function leeeet() {
+                
+                console.log(a)
+            }
+            console.log(a)
+            leeeet()
+        }
+        leeet()
+    </script>
+</body>
+</html>

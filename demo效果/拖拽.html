@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html,body,.box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .left,.right{
+        width: 100px;
+        height: 100px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        font-size: 50px;
+        text-align: center;
+        line-height: 100px;
+        color: #ffffff;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        opacity: 0;
+    }
+    .left{
+        left: 0;
+    }
+    .right{
+        right: 0;
+    }
+    .left:hover,.right:hover{
+        opacity: 1;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="left">
+          
+        </div>
+        <div class="right">
+          
+        </div>
+    </div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        var leftY;
+        var boxY = $(".box").height();
+        $(".left").on("mousedown",function(){
+            $(document).on("mousemove",function(e){
+                $(".left").css({left:e.pageX - 50,top:e.pageY});
+                leftY = e.pageY;
+            })
+        })
+        $(".left").on("mouseup",function(){
+            $(document).off("mousemove");
+            if(leftY < 50) {
+                leftY = 50;
+            }
+            if(boxY - leftY < 50) {
+                leftY = boxY -50;
+            }
+            $(".left").stop().animate({left:0,top:leftY},250);
+        })
+
+        var rightY;
+        var boxX = $(".box").width();
+        $(".right").on("mousedown",function(){
+            $(document).on("mousemove",function(e){
+                $(".right").css({left:e.pageX - 50,top:e.pageY});
+                rightY = e.pageY;
+                rightX = e.pageY;
+            })
+        })
+        $(".right").on("mouseup",function(){
+            $(document).off("mousemove");
+
+            if(rightY < 50) {
+                rightY = 50;
+            }
+            if(boxY - rightY < 50) {
+                rightY = boxY -50;
+            }
+            $(".right").stop().animate({left:boxX - 100,top:rightY},250);
+        })
+    </script>
+</body>
+</html>

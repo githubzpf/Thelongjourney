@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" style="border-bottom: 1px solid #000;">
+        <p>{{ num }}</p>
+        <my-button @btn="btns" @click.native="cli">{{ num }}</my-button>
+        <my-button @btn="btns">{{ num }}</my-button>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script src="./bus.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 0
+            },
+            methods: {
+                btns() {
+                    this.num += 1;
+                },
+                cli() {
+                    console.log(111)
+                }
+            },
+            components: {
+                "my-button": {
+                    template: "<button @click=\"add\">{{ a }}</button>",
+                    data() {
+                        return {
+                            a: 0
+                        }
+                    },
+                    methods: {
+                        add() {
+                            this.a += 1;
+                            this.$emit("btn")
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+    <div id="app2">
+        <p v-for="( item, index) in arr">{{ item }}</p>
+        <Child @childbtn="btns"></Child>
+    </div>
+    <script>
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                arr: []
+            },
+            methods: {
+                btns(mes) {
+                    console.log(mes);
+                    this.arr.push(mes);
+                }
+            },
+            components: {
+                "Child": {
+                    template: "<div><input type=\"text\" v-model=\"str\"><button @click=\"btn\">点击</button></div>",
+                    data() {
+                        return{
+                            str: "aaa"
+                        }
+                    },
+                    methods: {
+                        btn(){
+                            this.$emit("childbtn", this.str)
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+    <div id="app3">
+        <p v-model="aaa">{{ aaa }}</p>
+        <mycomponents :mes="aaa" @updat="message"></mycomponents>
+    </div>
+    <script>
+        var app3 = new Vue({
+            el: "#app3",
+            data: {
+                aaa: 0
+            },
+            methods: {
+                message(mes) {
+                    this.aaa = mes + 2;
+                }
+            },
+            components: {
+                "mycomponents": {
+                    props: ["mes"],
+                    template: "<button @click='btn'>{{ mes }}</button>",
+                    methods: {
+                        btn() {
+                            this.mes += 1;
+                            this.$emit("updat", this.mes);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+    <div id="app4">
+        {{ price }}
+        <currency-input v-model="price"></currency-input>
+    </div>
+    <script>
+        var app4 = new Vue({
+            el:"#app4",
+            data: {
+                price: "1"
+            },
+            components: {
+                "currency-input": {
+                    template: '\
+                        <span>\
+                        $\
+                        <input\
+                            ref="input"\
+                            v-bind:value="value"\
+                            v-on:input="updateValue($event.target.value)"\
+                        >\
+                        </span>\
+                    ',
+                    props: ["value"],
+                    methods: {
+                        updateValue(value) {
+                            var formattedValue = value.trim().slice(0, value.indexOf(".") == -1 ? value.length : value.indexOf(".") + 3);
+                            if(formattedValue !== value) {
+                                this.$refs.input.value = formattedValue;
+                            }
+                            this.$emit('input', formattedValue)
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+    <div id="app5">
+        <aaa :mes=100></aaa>
+        <bbb></bbb>
+    </div>
+    <script>
+        var app5 = new Vue({
+            el: "#app5",
+            data: {
+
+            },
+            components: {
+                "aaa": {
+                    props: ["mes"],
+                    template: "<button @click=\"btn\">{{ mes }}</button>",
+                    methods: {
+                        btn() {
+                            console.log(this.mes);
+                            console.log(bus);
+                           bus.$emit("btns", this.mes);
+                        }
+                    }
+                },
+                "bbb": {
+                    template: '<input type="text" v-model="mes">',
+                    data() {
+                        return{
+                            mes: ""
+                        }
+                    },
+                    mounted(){
+                        let thst = this;
+                        bus.$on("btns", function(mes){
+                           thst.mes = mes;
+                        })
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

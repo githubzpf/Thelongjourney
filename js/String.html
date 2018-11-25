@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str1 = "aaaaa";
+        let str2 = "bbbbb";
+        let str3 = "ccccc";
+
+
+
+
+        //charAt()  返回在指定位置的字符。
+        // console.log(str1.charAt(0))
+
+
+
+
+        //concat()  字符串拼接 
+        //console.log(str1.concat(str2, str3)) // aaaaabbbbbccccc
+
+
+
+
+        // indexOf()  返回某个指定的字符串值在字符串中首次出现的位置。
+        //lastIndexOf() 	从后向前搜索字符串，并从起始位置（0）开始计算返回字符串最后出现的位置。
+
+
+
+
+        //match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+        //如果 regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。
+
+        //console.log(str1.match(/a/g)) // ["a", "a", "a", "a", "a"]
+
+
+
+
+
+
+        //replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+        // console.log(str1.replace("aa", "ss"))  //  "ssaaa"
+        // console.log(str1)  //  "aaaaa"
+
+
+
+
+
+        // search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。
+        // 如果没有找到任何匹配的子串，则返回 -1。
+        //Number 	与指定查找的字符串或者正则表达式相匹配的 String 对象起始位置。
+
+        // 参数  searchvalue 	必须。查找的字符串或者正则表达式。
+        // console.log(str1.search("a"))  // 0
+        // console.log(str1.search("vv"))  // -1
+
+
+
+
+
+        //slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+        //使用 start（包含） 和 end（不包含） 参数来指定字符串提取的部分。
+        // console.log(str1.slice(0,1)) // "a"
+        // console.log(str1) // "aaaaa"
+
+
+
+
+
+
+        // split() 方法用于把一个字符串分割成字符串数组。
+
+        // 提示： 如果把空字符串 ("") 用作 separator，那么 stringObject 中的每个字符之间都会被分割。
+
+        // 注意： split() 方法不改变原始字符串。
+        // separator 	可选。字符串或正则表达式，从该参数指定的地方分割 string Object。
+        // limit 	可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。
+
+        // console.log(str1.split("")) // ["a", "a", "a", "a", "a"]
+        // console.log(str1.split(".")) // ["aaaaa"]
+
+
+
+
+
+
+        //substr() 方法可在字符串中抽取从 开始 下标开始的指定数目的字符。
+        // console.log(str1.substr(0, 3)) // "aaa"
+        // console.log(str1.substr(0)) // "aaaaa"
+
+
+
+
+
+
+        // substring() 方法用于提取字符串中介于两个指定下标之间的字符。
+
+        // substring() 方法返回的子串包括 开始 处的字符，但不包括 结束 处的字符。
+
+        // console.log(str1.substring(2, 4)) //  aa
+
+
+
+
+
+
+
+        // toLowerCase() 	把字符串转换为小写。
+        // toUpperCase() 	把字符串转换为大写。
+
+        // console.log(str2.toUpperCase()) // "BBBBB"
+        // console.log(str2) // "bbbbb"
+
+        // let str4 = "FFFFF"
+        // console.log(str4.toLowerCase()) // "fffff"
+    </script>
+</body>
+
+</html>

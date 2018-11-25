@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    a{
+        color: black;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        line-height: 40px;
+    }
+    #box{
+        width: 100%;
+        padding: 0 50px;
+    }
+    ul{
+        width: 100%;
+    }
+    ul li{
+        list-style: none;
+        border: 1px solid #ccc;
+        width: 100%;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+    }
+    #oneMenu{
+        display: flex;
+        width: 100%;
+    }
+    .onelist{
+        position: relative;
+    }
+    .onelist:hover #twoMenu{
+        display: block;
+    }
+    .oneBg{
+        background: #409eff;
+    }
+    .twoBg{
+        background: #5bc0de;
+    }
+    .threeBg{
+        background: #7bbbd6;
+    }
+    #twoMenu{
+        position: absolute;
+        display: none;
+    }
+    .twolist{
+        position: relative;
+        color: black;
+    }
+    #threeMenu{
+        position: absolute;
+        left: 100%;
+        margin-top: -40px;
+    }
+</style>
+<body>
+    <div class="box" id="box">
+        <ul id="oneMenu">
+    
+        </ul>
+    </div>
+    <script src="./data.js"></script>
+    <script src="./jquery.min.js"></script>
+    <script>
+        let twoTit = "";
+        function traverse(obj, tag, cla) {
+            let onetxt = "";
+            for (let i = 0, len = obj.length; i < len; i++){
+                if(obj[i].folderUrl){
+                    onetxt += "<li class =" + cla + "><a href="+  obj[i].folderUrl +">" + obj[i].folderName + "</a></li>";
+                } else {
+                    onetxt += "<li class =" + cla + ">" + obj[i].folderName + "</li>";
+                }
+            }
+            tag.append(onetxt);
+        }
+        traverse(data.data[0],$('#oneMenu'),"onelist");
+        $('#oneMenu').on("mouseover",'.onelist', function() {
+            $('.oneBg').removeClass("oneBg");
+            $('#twoMenu').remove();
+            $(this).addClass("oneBg");
+            let index = $(this).index();
+            twoTit = data.data[0][index].children;
+            if(twoTit){
+                let twoMenu = "<ul id='twoMenu'></ul>";
+                $(this).append(twoMenu);
+                traverse(twoTit,$('#twoMenu'),"twolist");
+            }
+            return false;
+        })
+        
+        $('#oneMenu').on("mouseover",'.twolist', function() {
+            $('.twoBg').removeClass('twoBg');
+            $('#threeMenu').remove();
+            $(this).addClass('twoBg');
+            let index = $(this).index();
+            if(twoTit[index].children){
+                let twoMenu = "<ul id='threeMenu'></ul>";
+                $(this).append(twoMenu);
+                traverse(twoTit[index].children,$('#threeMenu'),"threelist");
+            }
+            return false;
+        })
+        
+        $('#oneMenu').on("mouseover",'.threelist', function() {
+            $(this).addClass('threeBg')
+            return false;
+        })
+        
+        $('#oneMenu').on("mouseout",'.threelist', function() {
+            $(this).removeClass('threeBg')
+            return false;
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+@-webkit-keyframes play{
+		0%{
+			-webkit-transform:rotateX(0deg);
+		}
+		100%{
+			-webkit-transform:rotateX(3600deg);
+		}
+	}
+	@-webkit-keyframes playy{
+		0%{
+			-webkit-transform:rotateY(0deg);
+		}
+		100%{
+			-webkit-transform:rotateY(3600deg);
+		}
+	}
+	@-webkit-keyframes playyy{
+		0%{
+			-webkit-transform:rotateZ(0deg);
+		}
+		100%{
+			-webkit-transform:rotateZ(7200deg);
+		}
+	}
+	.boxxx{
+		width:200px;
+	height: 200px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin:-150px 0 0 -100px;
+	-webkit-transform-style:preserve-3d;
+		-webkit-animation: playyy 70s infinite;
+
+	.boxx{
+	width:200px;
+	height: 200px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin:-150px 0 0 -100px;
+	-webkit-transform-style:preserve-3d;
+		-webkit-animation: playy 20s infinite;
+	.box{
+	width:200px;
+	height: 200px;
+	background: red;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin:-100px 0 0 -100px;
+	-webkit-transform-style:preserve-3d;
+	
+	-webkit-animation: play 40s infinite;
+	.div{
+		width:200px;
+		height: 200px;
+		position: absolute;
+	}
+	.z{
+		background:url(../images/1.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateX(-100px) rotateY(90deg);
+	}
+	.y{
+		background:url(../images/2.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateX(100px) rotateY(90deg);
+	}
+	.q{
+		background:url(../images/3.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateZ(100px) rotateY(0deg);
+	}
+	.h{
+		background:url(../images/4.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateZ(-100px) rotateY(0deg);
+	}
+	.s{
+		background:url(../images/5.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateY(-100px) rotateX(90deg);
+	}
+	.x{
+		background:url(../images/6.gif);
+		background-size: 100% 100%;
+		-webkit-transform:translateY(100px) rotateX(90deg);
+	}
+}
+}
+}

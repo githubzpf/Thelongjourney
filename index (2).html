@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div class="box"> 
+		<div id="re">点击显示时间</div>
+	</div>
+	<div class="sizes"></div>
+</body>
+<script>
+	let sizes = document.getElementsByClassName("sizes")[0];
+	window.onresize = function(){
+		let aa = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; //浏览器窗口的尺寸。
+		console.log(aa);
+	}
+	let p = document.createElement("p");
+	let ptxt = document.createTextNode("这就是p标签喽");
+	p.appendChild(ptxt);
+	let box = document.getElementsByClassName("box")[0];
+	box.appendChild(p);
+	p.onclick = function() {
+		p.innerHTML = new Date().toLocaleTimeString();
+	}
+
+	let re = document.getElementById("re");
+	re.onclick = function() {
+		box.removeChild(this);
+	}
+
+	let arr = "sdfg";
+	//console.log(arr.toUpperCase());
+
+	let num1 = 123;
+	let num2 = new Number(123);
+	//console.log(typeof num1) //number
+	//console.log(typeof(num2)) //object
+	//console.log(num1 === num2) //flase  一个是对象 一个是数字
+
+var str="a,b,c,d,e,f";
+// console.log(str.split(",")); //["a", "b", "c", "d", "e", "f"]
+// console.log(str.split(" ")); //["a,b,c,d,e,f"]
+// console.log(str.split("|")); //["a,b,c,d,e,f"]
+
+
+</script>
+
+
+
+
+<div id="example"></div>
+<script>
+txt = "<p>浏览器代号: " + navigator.appCodeName + "</p>";
+txt+= "<p>浏览器名称: " + navigator.appName + "</p>";
+txt+= "<p>浏览器版本: " + navigator.appVersion + "</p>";
+txt+= "<p>启用Cookies: " + navigator.cookieEnabled + "</p>";
+txt+= "<p>硬件平台: " + navigator.platform + "</p>";
+txt+= "<p>用户代理: " + navigator.userAgent + "</p>";
+txt+= "<p>用户代理语言: " + navigator.systemLanguage + "</p>";
+document.getElementById("example").innerHTML=txt;
+</script> 
+
+
+
+<button id="btn" value="确认框">
+	确认框
+</button>
+
+<script>
+	var btn = document.getElementById("btn");
+	btn.onclick = function() {
+		let a = confirm("你确定？");
+		let x;
+		if (a==true)
+		{
+			x="你按下了\"确定\"按钮!";
+		}
+		else
+		{
+			x="你按下了\"取消\"按钮!";
+		} 
+		btn.innerHTML = x;
+	}
+</script>
+
+
+
+
+
+
+<p>点击按钮查看输入的对话框。</p>
+<button onclick="myFunction()">点我</button>
+<p id="demo"></p>
+<script>
+	function myFunction(){
+	var x;
+	var person=prompt("请输入你的姓名", "默认值")
+	if (person!=null && person!=""){
+	    x="你好 " + person + "! 今天感觉如何?";
+	    document.getElementById("demo").innerHTML=x;
+	}
+}
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="n in filters">{{ n }}</li>
+        </ul>
+        <ul>
+            <li v-for="n in filterss(arr)">{{ n }}</li>
+        </ul>
+        <ul>
+            <li v-for="n in 5">{{ n }}</li>
+        </ul>
+        <ul>
+            <template v-for="n in arr">
+                <li>{{ n }}</li>
+            </template>
+        </ul>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                arr: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            },
+            methods: {
+                filterss: function (arr) {
+                    return arr.filter(function (number) {
+                        return number % 2 === 1
+                    })
+                }
+            },
+            computed: {
+                filters: function() {
+                    return this.arr.filter(function (number) {
+                        return number % 2 ===0
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

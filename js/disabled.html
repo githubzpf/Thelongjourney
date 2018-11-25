@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- <input type="submit" value="提交" class="btn"></input> -->
+        <!-- <button class="btn">提交</button> -->
+    </div>
+</body>
+<script>
+    var htmls = '<input type="submit" value="提交" class="btn"></input>';
+    document.getElementById("box").innerHTML = htmls;
+    var btns = document.getElementsByClassName("btn");
+    console.log(btns);
+    btns[0].onclick = function () {
+        console.log(111);
+        this.disabled = "disabled";
+        var that = this;
+        setTimeout(function() {
+            that.disabled = "";
+            console.log(2222)
+        }, 3000)
+    }
+</script>
+</html>

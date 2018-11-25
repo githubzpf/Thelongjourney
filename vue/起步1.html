@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        {{message}}
+        <br>
+        <span v-bind:title="times" style="cursor:pointer">悬停显示时间</span>
+        <br>
+        <button @click="reverseBtns">{{btns}}</button>
+        <br>
+        <input type="text" v-model="message">
+        <br>
+        <ol>
+            <todo-item></todo-item>
+        </ol>
+    </div>
+
+    <div id="componentsss">
+        <todo-items
+        v-for="item in obj"
+        v-bind:todo="item"
+        >
+
+        </todo-items>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+        Vue.component("todo-item", {
+            template: "<li>这是一个待办</li>"
+        })
+        let box = new Vue({
+            el: "#box",
+            data: {
+                message: "hello word",
+                times: new Date().toLocaleString(),
+                btns: "点击反转"
+            },
+            methods: {
+                reverseBtns() {
+                    this.btns = this.btns.split("").reverse().join(""); 
+                }
+            }
+        })
+
+
+        Vue.component("todo-items",{
+            props:["todo"],
+            template:"<li>{{ todo.text }}</li>"
+        })
+        let componentsss = new Vue({
+            el:"#componentsss",
+            data:{
+                obj: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其它什么人吃的东西' }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call和apply、bind</title>
+</head>
+
+<body>
+    <script>
+        //在js中所有的函数都是Function的实例，而且对于Function来说，它的原型即Function.prototype中含有很多东西，其中call,apply和bind方法就是Function原型中的方法，所以根据原型的规则，所有的函数都可以使用原型中属性和方法，所以来说，对于所有的函数都可以使用call，apply和bind方法。
+        //作用: 改变this指向;
+        //如果使用apply或call方法，那么this指向他们的第一个参数，apply的第二个参数是一个参数数组，call的第二个及其以后的参数都是数组里面的元素，就是说要全部列举出来;
+        var b = 100;
+
+        function a() {
+            return this.b;
+        };
+        
+        var c = {b: 200};
+
+        console.log(a.call(c)); // 200
+
+
+
+        //求数组最大值或最小值
+        var arr2 = [5, 96, 65, 78, 92];
+        console.log(Math.max.call(null, ...arr2)); // 96
+        console.log(Math.min.apply(null, arr2)); // 5
+
+
+
+        //验证是否是数组
+        function isArray(obj) {
+            return Object.prototype.toString.call(obj) === "[object Array]";
+        }
+        console.log(isArray(arr2)); // true
+    </script>
+
+
+
+    <button id="btn">按钮</button>
+    <div id="text">文字文字</div>
+    <ul>
+        <li class="lis"></li>
+        <li class="lis"></li>
+        <li class="lis"></li>
+        <li class="lis"></li>
+        <li class="lis"></li>
+    </ul>
+    <script>
+        // bind（）--也是改变函数体内this的指向;
+        // bind会创建一个新函数， 称为绑定函数， 当调用这个函数的时候， 绑定函数会以创建它时传入bind（） 方法的第一个参数作为this， 传入bind（） 方法的第二个及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数；
+
+        // bind与apply、 call最大的区别就是： bind不会立即调用， 其他两个会立即调用
+        var btn = document.getElementById("btn");
+        var text = document.getElementById("text");
+        var lis = document.getElementsByClassName("lis");
+        btn.onclick = function () {
+            console.log(this.id);
+        }.bind(text);
+
+        console.log(111);
+        console.log(Array.prototype.slice.call(lis));
+
+
+        //ie6-ie8不支持bind方法，模拟该方法
+        if (! function () {}.bind) {
+            Function.prototype.bind = function (context) {
+                var self = this,
+                    args = Array.prototype.slice.call(arguments);
+
+                return function () {
+                    return self.apply(context, args.slice(1));
+                }
+            };
+        }
+    </script>
+
+
+    <script>
+        var obj3 = {x : 1};
+        function fn() {
+            console.log(this.x);
+        }
+        fn.call(obj3); // 1
+    </script>
+</body>
+
+</html>

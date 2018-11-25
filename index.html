@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    div,
+    ul {
+        display: inline-block;
+    }
+</style>
+
+<body>
+    <script>
+        // 检测一个变量是不是String类型；
+        var str = "jgkjergjerj";
+        console.log(typeof str === "string");
+        console.log(typeof (str) === "string");
+        console.log(str.constructor === String);
+
+
+        //js去除字符串空格;
+        var str1 = " aaa  bbb ccc ";
+
+        //去除所有空格
+
+        console.log(str1.replace(/\s+/g, ""));  // aaabbbccc
+        console.log(str1);  //  aaa  bbb ccc 
+
+        // 去除两头空格
+
+        console.log(str1.replace(/^\s|\s$/g, "***"));
+        console.log(str1.trim());
+
+
+        //去除左空格
+
+        console.log(str1.replace(/^\s*/, "......"));
+        console.log(str1.trimLeft());
+
+        //去除右空格
+
+        console.log(str1.replace(/\s$/, "~~~~"));
+        console.log(str1.trimRight());
+
+
+
+
+        //获取浏览器URL中查询字符串中的参数
+
+        var str2 = "http://www.runoob.com/jquery/misc-trim.html?channelid=12333&name=xiaoming&age=23";
+
+
+        function getcanshu(key) {
+            var list = str2.split("?")[1].split("&");
+            for (var i = 0, len = list.length; i < len; i++) {
+                var lists = list[i].split("=");
+                if (lists[0] == key) {
+                    return lists[1];
+                }
+            }
+        }
+
+        function getcanshus(key) {
+            var list = str2.split("?")[1].split("&");
+            var obj = {};
+            for (var i = 0, len = list.length; i < len; i++) {
+                var lists = list[i].split("=");
+                obj[lists[0]] = lists[1];
+            }
+            return obj[key];
+        }
+        console.log(getcanshu("age"));
+        console.log(getcanshus("name"));
+
+
+        var str3 = "asdfcafa";
+
+        console.log(str3.slice(0, 2)); // as
+
+        console.log(str3.substr(2, 3)); // dfc
+
+        console.log(str3.substring(0, 2)); //as
+
+        console.log(str3.search(/[sdf]/)); // 1
+
+        console.log(str3.toUpperCase()); // ASDFCAFA
+
+    </script>
+
+
+
+
+
+    <ul id="ul1">
+        <li style="color:red;">a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <button onclick="changeDom()">点击</button>
+
+    <script>
+        function changeDom() {
+            var d = document.createDocumentFragment();
+            d.appendChild(document.getElementsByTagName("li")[0]);
+            //    d.childNodes[0].childNodes[0].nodeValue = "1";
+            d.childNodes[0].childNodes[0].nodeValue;
+            document.getElementById("ul1").appendChild(d);
+        }
+    </script>
+
+
+
+
+    <ul data-uid="ul">
+
+    </ul>
+
+    <script>
+        var arr = ["a", "b", "c", "d"];
+
+        var e = document.createDocumentFragment();
+
+        arr.forEach(function (item, index) {
+            var li = document.createElement("li");
+            // li.textContent = item;
+            //li.innerText = item;
+            li.innerHTML = item;
+            e.appendChild(li);
+        })
+
+        document.querySelector('[data-uid="ul"]').appendChild(e);
+
+    </script>
+
+
+
+
+
+
+    <div id="box">
+        <div>111111</div>
+        <div onclick="remo()">222222</div>
+    </div>
+
+    <script>
+        var box = document.getElementById("box");
+
+        var boxs1 = document.createElement("div");
+
+        var boxs1text = document.createTextNode("创建的值");
+
+        // box.appendChild(boxs1.appendChild(boxs1text));
+        function remo() {
+            box.removeChild(box.childNodes[0]);
+            box.appendChild(boxs1.appendChild(boxs1text));
+        }
+    </script>
+
+
+
+    <input type="button" onclick="aa(this);" value="点击一下" />
+    <script>
+        function aa(a) {
+            console.log(a)
+        }
+
+
+        function Animal(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        var person = new Animal("zhanggsan", 19);
+        console.log(person);
+    </script>
+
+
+    <input type="text" id="btn" value="点击触发">
+
+    <script>
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+            console.log(this.value);
+        }
+
+
+        var brr2 = [8, 5, 69, 234, 569, 2];
+        console.log(Math.max.apply(this, brr2)); //569
+        console.log(Math.min.call(this, ...brr2)); //2
+
+    </script>
+
+
+
+    <script>
+        //typeof与instanceof比较：
+
+        var aa = 5;
+        console.log(typeof (aa)); // number
+
+        var bb = "asfasf";
+        console.log(typeof (bb)); // string
+
+        var cc = true;
+        console.log(typeof cc); // boolean
+
+        var dd = [1, 2, 3];
+        var ll = null;
+        console.log(typeof ll); // object
+        console.log(typeof (dd)); // object
+
+        function ee() {
+            return 200;
+        }
+        console.log(typeof (ee)); // function
+
+        console.log(typeof (ff)); // undefined
+
+
+
+
+        var aaa = new Array();
+        console.log(aaa instanceof Array); // true
+
+        var bbb = [1, 2, 3];
+        console.log(bbb instanceof Array); // true
+
+        console.log(aaa instanceof Object); // true
+
+
+
+
+        //闭包： 当一个函数的返回值是另一个函数，返回的那个函数调用了父函数内部的局部变量，返回的那个函数在外部被执行，就产生了闭包。
+        var count = 10;
+        function fn1() {
+            var count = 0;
+            return function () {
+                count++;
+                return count;
+            }
+        }
+
+        var countAdd = fn1();
+        console.log(countAdd()); // 1
+        console.log(countAdd()); // 2
+        console.log(countAdd()); // 3
+
+
+
+        //jsonp缺点：
+        //1.无法发送post请求
+        //2.确定jsonp请求是否失败并不容易，大多数框架的实现都是结合超时时间来判断
+
+        // var _script = document.createElement("script");
+        // _script.type = "text/javascript";
+        // _script.src = "http://localhost:8888/jsonp?callback=testjsonp";
+        // document.head.appendChild(_script);
+        // function testjsonp(data) {
+        //     console.log(data);
+        // }
+
+    </script>
+
+
+
+    <div id="boxa">
+        <button id="btna">点击内存泄漏</button>
+    </div>
+    <script>
+        var btna = document.getElementById("btna");
+        btna.onclick = function () {
+            btna.onclick = null;
+            document.getElementById("boxa").innerHTML = "泄露中...";
+        }
+
+        console.log(window instanceof Object); // true
+    </script>
+
+
+
+
+<script>
+    function Teacher() {
+        this.name = "zhangsan";
+    }
+
+    Teacher.prototype.fn = function() {
+        console.log(this);
+    }
+    Teacher.fn
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

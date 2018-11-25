@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+#box{
+    width: 100%;
+    padding: 0 10px;
+}
+ul{
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+ul li{
+    list-style: none;
+    width: 120px;
+    padding: 0 2px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 10px;
+    position: relative;
+    cursor: pointer;
+}
+.fon{
+    width: 50px;
+    height: 50px;
+    background: #5bc0de;
+    border-radius: 50%;
+    line-height: 50px;
+}
+.fa{
+    color: #fff;
+}
+.navtxt{
+    line-height: 22px;
+    padding: 8px 0px;
+    font-size: 14px;
+    width: 100%;
+    word-break:break-all;
+}
+.skip{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.oneBor, .twoBor{
+    border-bottom: 1px solid #409eff;
+}
+.twoMenu{
+    border-top: 1px solid #7bbbd6;
+}
+.threeMenu{
+    border-top: 1px solid #7bbbd6;
+}
+.oneMenu{
+    
+}
+.tit{
+    width: 100%;
+    line-height: 40px;
+    padding-left: 20px;
+    color: #000;
+    margin-top: 30px;
+    border-bottom: 2px solid #409eff;
+}

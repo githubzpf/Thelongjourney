@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./jquery.js"></script>
+	<link rel="stylesheet" href="./index.css">
+</head>
+<style>
+	.active{
+		background: red;
+		color: blue;
+	}
+</style>
+<body>
+	<!-- <div id="f[aas]">苏大维格</div>
+	<div class="box">2</div>
+	<div class="box">2</div>
+	<div class="box">2</div>
+	
+	<script>
+		console.log($("#f\\[aas\\]"));
+		console.log($(".box"));
+		console.log($("*"));
+	</script> -->
+
+
+
+	<!-- <div></div>
+	<span></span>
+	<p></p>
+	<script>
+		$("div, span, p").text("ahgai")
+	</script>
+
+
+
+	<div class="box1">
+		<div class="box2">
+			<div class="box3">
+				box3
+			</div>
+		</div>
+		<div class="box3">
+			box3
+		</div>
+		<div class="box3">
+			box3
+		</div>
+	</div>
+	<script>
+		console.log($(".box1 .box3"));  //子孙级
+		console.log($(".box1 > .box3")); // 子级
+		console.log($(".box2 + .box3")); // 同级下一个
+		console.log($(".box2 ~ .box3")) // 同级所有
+	</script> -->
+
+
+
+
+	<!-- <ul class="ul1">
+		<li class="list">1</li>
+		<li class="list">2</li>
+		<li class="list">3</li>
+		<li class="list">4</li>
+		<li class="list">5</li>
+		<li class="list">6</li>
+	</ul>
+	<input name = "a" type="checkbox" class="in1">
+	<input name="b" checked="checked" type="checkbox">
+	<script>
+		console.log($(".ul1 li:first"));
+		console.log($(".ul1 li:last"));
+		console.log($(".ul1 > li:even"));
+		console.log($(".ul1 > li:odd"));
+		console.log($(".ul1 li:gt(2)"));
+		console.log($(".ul1 li:lt(3)"));
+		console.log($("input:not(:checked)"));
+		console.log($("input:checked"));
+		console.log($("input:not(.in1)"));
+	</script> -->
+
+
+
+
+	<!-- <div lang = "ds">
+		ds
+		<div lang = "ds">
+			ds
+		</div>
+	</div>
+	<div lang = "ds">
+		ds
+	</div>
+	<script>
+		console.log($("div:lang(ds)"));
+	</script> -->
+
+
+
+
+
+
+	<!-- <h1>h1</h1>
+	<p>p1</p>
+	<h2>h2</h2>
+	<p>p2</p>
+	<script>
+	console.log($(":header").css("background", "red"));
+	</script> -->
+
+
+
+	<!-- <div class="anima" style="width:100px;height: 100px;background: #000"></div>
+	<script>
+		$(".anima").on("click", function (argument) {
+			$(".anima:not(:animated)").animate({"width": "+=100"}, 1000);
+		})
+	</script> -->
+
+
+
+
+	<!-- <div id="content">
+	    <input tabIndex="1">
+	    <input tabIndex="2">
+	    <select tabIndex="3">
+	        <option>select menu</option>
+	    </select>
+	    <div tabIndex="4">
+	        a div
+	    </div>
+	</div>
+	<script>
+		$( "#content" ).delegate( "*", "focus blur", function( event ) {
+		    var elem = $( this );
+		    console.log(elem)
+		    setTimeout(function() {
+		       elem.toggleClass( "focused", elem.is( ":focus" ) );
+		    }, 0);
+		});
+	</script> -->
+
+
+
+	<!-- <script>
+		//在HTML中，文档的根元素，和$(":root")选择的元素一样， 永远是<html>元素。
+		console.log($(":root").css("background", "red"));
+	</script> -->
+
+
+
+	<!-- <div>zs</div>
+	<div class="dfa" style="display: none">zcszs</div>
+	<div class="ds">zcsds</div>
+	<div>zvsdszs</div>
+	<div></div>
+	<div>
+		<p>has</p>
+	</div>
+	<script>
+		console.log($("div:contains('zs')"));
+		console.log($("div:empty"));
+		console.log($("div:has(p)").addClass("bg"));
+		console.log($("div:hidden"));
+		console.log($("div:visible"));
+		console.log($("div[class]"));
+	</script> -->
+
+
+
+
+
+	<!-- <input type="checkbox" name="newsletter" value="Hot Fuzz" />
+	<input type="checkbox" name="newsletter" value="Cold Fusion" />
+	<input type="checkbox" name="accept" value="Evil Plans" />
+	<input type="checkbox" name="accepts" value="sghrt" />
+	<input type="checkbox" name="rgtsy" value="shht" />
+	<script>
+		// $("input[name='accept']").attr("checked", true);
+		// $("input[name!='accept']").attr("checked", true);
+		// $("input[name^='news']").attr("checked", true);
+		// $("input[name$='pt']").attr("checked", true);
+		// $("input[name*='s']").attr("checked", true);
+	</script> -->
+
+
+
+	<!-- <ul>
+		<li>5</li>
+		<li>5</li>
+		<li>5</li>
+	</ul>
+	<ul>
+		<li>6</li>
+		<li>6</li>
+		<li>6</li>
+	</ul> -->
+	<script>
+		// console.log($("ul li:first-child")); // 5 6
+		// console.log($("ul li:first")); // 5
+		// console.log($("ul li:last-child"));
+		// console.log($("ul li:last"));
+	</script>
+
+
+
+
+
+	<!-- <div id="n1">
+	    <div id="n2" class="abc">
+	        <label id="n3">label1</label>
+	        <span id="n4">span1</span>
+	        <span id="n5" class="abc">span2</span>
+	        <span id="n6">span3</span>
+	    </div>
+	    <div id="n7">
+	        <span id="n8" class="abc">span1</span>
+	        <span id="n9">span2</span>
+	        <span id="n10" class="abc">span10</span>
+	    </div>
+	</div>
+	<script>
+		console.log($("span:first-of-type"));
+		console.log($(".abc:first-of-type"));
+	</script> -->
+
+
+
+
+	<!-- <ul>
+	  <li>John</li>
+	  <li>Karl</li>
+	  <li>Brandon</li>
+	</ul>
+	<ul>
+	  <li>Glen</li>
+	  <li>Tane</li>
+	  <li>Ralph</li>
+	</ul>
+	<script>
+		console.log($("ul li:nth-child(2)").text()); // KarlTane
+		console.log($("ul li:eq(2)").text()); // Brandon
+		console.log($("ul li:nth-last-child(2").text()); // KarlTane
+	</script> -->
+
+
+
+
+	<!-- 
+	<ul>
+	  <li>John</li>
+	  <li>Karl</li>
+	  <li>Brandon</li>
+	</ul>
+	<ul>
+	  <li>Glen</li>
+	</ul>
+	<script>
+		console.log($("ul li:only-child").text()); // Glen
+	</script> -->
+
+
+
+
+
+	<!-- <form>
+	    <input type="button" value="Input Button"/>
+	    <input type="checkbox" />
+	    <input type="text">
+
+	    <input type="file" />
+	    <input type="hidden" />
+	    <input type="image" />
+
+	    <input type="password" />
+	    <input type="radio" />
+	    <input type="reset" class="resets" />
+
+	    <input type="submit" />
+	    <input type="text" />
+	    <select><option>Option</option></select>
+
+	    <textarea></textarea>
+	    <button>Button</button>
+
+	</form>
+	<script>
+		console.log($(":input"));
+		console.log($(":input.resets"));
+		console.log($(":text"));
+		console.log($(":checkbox"));
+		console.log($(":image"));
+	</script> -->
+
+
+
+	<!-- <form>
+		<input name="email" disabled="disabled" />
+		<input name="id" />
+		<input type="checkbox" name="newsletter" checked="checked" value="Daily" />
+		<input type="checkbox" name="newsletter" value="Weekly" />
+		<input type="checkbox" name="newsletter" checked="checked" value="Monthly" />
+	</form>
+	<select>
+		<option value="1">Flowers</option>
+		<option value="2" selected="selected">Gardens</option>
+		<option value="3">Trees</option>
+	</select>
+	<script>
+		console.log($("input:enabled"));
+		console.log($("input:disabled"));
+		console.log($("input:checked"));
+		console.log($("select option:selected"));
+	</script> -->
+
+
+
+	<!-- <div>
+		<img src="">
+		<img src="">
+		<img src="">
+	</div>
+	<script>
+		$("div img").attr("src", "./qq.png");
+		// $("div img").attr({src: "./qq.png", title: "qq"});
+		$("div img").attr("title", function() {
+			return this.src;
+		})
+		$("div img").eq(1).removeAttr("src");
+		$("div img:eq(2)").removeAttr("title");
+	</script> -->
+
+
+
+
+	<!-- <form action="">
+		<input type="checkbox" checked>
+		<input type="checkbox">
+	</form> -->
+	<script>
+		// console.log($("input[type='checkbox']").eq(0).prop("checked")); //true
+		// console.log($("input[type='checkbox']").eq(1).prop("checked")); // false
+		// console.log($("input[type='checkbox']").prop("checked")); // true
+		// $("input[type='checkbox']").prop({
+		// 	disabled: true
+		// });
+		// $("input[type='checkbox']").prop("disabled",true);
+		// $("input[type='checkbox']").prop("disabled",false);
+		// $("input[type='checkbox']").eq(0).prop("disabled", function(i,val) {
+		// 	console.log(i); // 0
+		// 	console.log(val); // false
+		// 	return !val;
+		// })
+	</script>
+
+
+
+
+
+
+	<!-- <form action="">
+
+	</form>
+	<script>
+		$("<input>", {
+			type: "text",
+			val: "Test",
+			focusin: function () {
+				$(this).addClass("active");
+			},
+			focusout: function () {
+				$(this).removeClass("active");
+			}
+		}).appendTo("form");
+	</script> -->
+
+
+
+
+
+
+
+	<!-- <ul class="uls">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<script>
+		console.log($(".uls li").get());
+		console.log($(".uls li").get().reverse());
+	</script> -->
+
+
+
+
+
+	<div class="da">sss</div>
+	<div class="db" data-keys="kes"></div>
+	<script>
+		$(".da").data("name", "zs");
+		console.log($(".da").data("name"));
+		$(".da").data("obj", {old: "15", page: "adf"});
+		console.log($(".da").data("obj").page);
+		$(".da").click(function() {
+			console.log($(this).data("obj").old);
+			$(this).removeData("obj");
+			console.log($(this).data("obj").old);
+		})
+		console.log($(".db").data("keys"));
+	</script>
+</body>
+
+</html>
